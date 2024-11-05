@@ -1,0 +1,32 @@
+python run_eval.py --data-eval /home/lsh/share/soundclass/ast/egs/speechcommands/data/datafiles/speechcommand_eval_data.json --label-csv /home/lsh/share/soundclass/ast/egs/speechcommands/data/speechcommands_class_labels_indices.csv --exp-dir /home/lsh/share/soundclass/ast/egs/speechcommands/exp_dir1030
+
+
+train.py
+export TORCH_HOME=/home/lsh/share/ast/pretrained_models
+python run.py \
+    --data-train /home/lsh/share/ast/egs/esc50/data/datafiles/esc_train_data_1.json \
+    --data-val /home/lsh/share/ast/egs/esc50/data/datafiles/esc_eval_data_1.json \
+    --label-csv /home/lsh/share/ast/egs/esc50/data/esc_class_labels_indices.csv \
+    --n_class 50 \
+    --model ast \
+    --dataset esc50 \
+    --exp-dir ./exp/test-esc50 \
+    --lr 1e-4 \
+    --batch-size 48 \
+    --n-epochs 25 \
+    --freqm 24 \
+    --timem 96 \
+    --mixup 0 \
+    --bal none \
+    --tstride 10 \
+    --fstride 10 \
+    --imagenet_pretrain True \
+    --audioset_pretrain True \
+    --metrics acc \
+    --loss CE \
+    --warmup False \
+    --lrscheduler_decay 0.85
+
+
+1_ audioset_ 사전학습모델 실행명령어 inference.py
+python inference_2.py --audio_path /home/lsh/share/ast/egs/audioset/data/LDoXsip0BEQ_000177.flac --model_path /home/lsh/share/ast/pretrained_models/audioset_10_10_0.4593.pth
